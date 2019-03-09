@@ -48,6 +48,7 @@ group :development, :test do
   gem 'bootstrap', '~> 4.3.1'
   gem 'jquery-rails'
   gem 'webpacker', '~> 3.2'
+  gem 'dotenv-rails'
 end
 
 group :development do
