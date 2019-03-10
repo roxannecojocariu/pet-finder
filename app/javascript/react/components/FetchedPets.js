@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import FetchedPetTile from '../components/FetchedPetTile'
+import FetchedPetTile from './FetchedPetTile'
 
-class FetchedPetsContainer extends Component {
+class FetchedPets extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -49,11 +49,11 @@ class FetchedPetsContainer extends Component {
 
     return(
       <div>
-        Welcome!
-        {animals}
+        Welcome!<br />
+        <a href={`/pets/new`}>Search for a pet!</a><br />
       </div>
     )
   }
 }
 
-export default FetchedPetsContainer
+export default FetchedPets
