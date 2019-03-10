@@ -20,8 +20,11 @@ class FetchedPet
     while i < data_set["lastOffset"]["$t"].to_i
       details = data_set["pets"]["pet"][i]
       summary = Hash.new
+      summary["id"] = details["id"]["$t"]
       summary["name"] = details["name"]["$t"]
       summary["age"] = details["age"]["$t"]
+      summary["description"] = details["description"]["$t"]
+      summary["photo"] = details.dig("media","photos","photo",2,"$t")
       @all_pets << summary
       i += 1
     end
