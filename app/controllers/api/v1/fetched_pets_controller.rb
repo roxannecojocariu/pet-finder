@@ -5,18 +5,21 @@ require 'pry'
 class Api::V1::FetchedPetsController < ApplicationController
 
   def index
-    pets = FetchedPet.new
-    render json: pets.pet_finder_search
+    uri = URI("http://api.petfinder.com/pet.find?key=#{ENV["PET_FINDER_API_KEY"]}&animal=dog&location=#{params[:location]}&format=json")
+
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      request = Net::HTTP::Get.new uri
+      response = http.request request
+      json_string = response.body
+      @json_object = JSON.parse(json_string)
+      pets = FetchedPet.data_grab(@json_object["petfinder"])
+
+      render json: pets
+    end
   end
 
-  def show
-    render json: { pets: @all_pets }
-  end
+  # def create
+  #   puts params
+  #   binding.pry
+  # end
 end
-
-
-#need to figure out how to display individual pets now.  something.all
-
-#if i create a database and add pets to my database, what happens when a pet gets adopted and my app still has the pet?
-
-#

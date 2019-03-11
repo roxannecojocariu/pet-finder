@@ -8,8 +8,7 @@ const App = (props) => {
   return (
     <div>
       <Router history={browserHistory}>
-        <Route path='/' component={PetsContainer} />
-        <Route path='/pets/new' component={PetsForm} />
+        <Route path='/' component={PetsForm} />
       </Router>
     </div>
   )

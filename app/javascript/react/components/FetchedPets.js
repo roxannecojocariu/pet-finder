@@ -11,7 +11,8 @@ class FetchedPets extends Component {
   }
 
   componentDidMount(){
-    fetch(`/api/v1/fetched_pets`,{
+    // let location = '02116'
+    fetch(`/api/v1/fetched_pets?location=${this.props.location}`,{
       credentials: 'same-origin'
     })
     .then(response => {
@@ -50,7 +51,8 @@ class FetchedPets extends Component {
     return(
       <div>
         Welcome!<br />
-        <a href={`/pets/new`}>Search for a pet!</a><br />
+        {animals}
+
       </div>
     )
   }
