@@ -12,7 +12,6 @@ const Select = props => {
       <select onChange={props.handleChange}>
         <option value=""></option>
         {optionElements}
-
       </select>
     </label>
   );
