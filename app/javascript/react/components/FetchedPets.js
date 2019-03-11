@@ -11,7 +11,6 @@ class FetchedPets extends Component {
   }
 
   componentDidMount(){
-    // let location = '02116'
     fetch(`/api/v1/fetched_pets?location=${this.props.location}`,{
       credentials: 'same-origin'
     })
@@ -33,7 +32,6 @@ class FetchedPets extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
-
   render(){
     let animals;
     animals = this.state.animals.map((animal) => {
@@ -50,9 +48,7 @@ class FetchedPets extends Component {
 
     return(
       <div>
-        Welcome!<br />
         {animals}
-
       </div>
     )
   }

@@ -16,15 +16,12 @@ class PetsForm extends Component {
       animals: '',
       errors: {},
       submitted: false,
-      // clicked: false
     }
 
-    // this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  this.handleChange = this.handleChange.bind(this);
+  this.handleClearForm = this.handleClearForm.bind(this);
+  this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
-
 
   handleClearForm(event) {
     event.preventDefault();
@@ -36,10 +33,9 @@ class PetsForm extends Component {
   }
 
   handleChange(event) {
-  let value = event.target.value;
-  let name = event.target.name;
-  this.setState({ [name]: value })
-
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value })
   }
 
   handleFormSubmit(event) {

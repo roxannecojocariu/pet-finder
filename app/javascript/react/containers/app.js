@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute, Router, browserHistory } from 'react-router'
 
-import PetsContainer from './PetsContainer'
 import PetsForm from './PetsForm'
 
 const App = (props) => {
