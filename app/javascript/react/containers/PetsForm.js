@@ -9,9 +9,9 @@ class PetsForm extends Component {
     super(props)
     this.state = {
       typeOfAnimal: ['', 'barnyard', 'bird', 'cat', 'dog', 'horse', 'reptile', 'smallfurry'],
-      typeOfAnimalSelected: '',
+      typeOfAnimalSelected: null,
       ageOfAnimal: ['', 'Baby', 'Young', 'Adult', 'Senior'],
-      ageOfAnimalSelected: [''],
+      ageOfAnimalSelected: null,
       location: null,
       animals: '',
       errors: {},
@@ -19,18 +19,18 @@ class PetsForm extends Component {
     }
 
   this.handleChange = this.handleChange.bind(this);
-  this.handleClearForm = this.handleClearForm.bind(this);
+  // this.handleClearForm = this.handleClearForm.bind(this);
   this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleClearForm(event) {
-    event.preventDefault();
-    this.setState({
-      errors: {},
-      typeOfAnimalSelected: '',
-      ageOfAnimalSelected: ''
-    })
-  }
+  // handleClearForm(event) {
+  //   event.preventDefault();
+  //   this.setState({
+  //     errors: {},
+  //     typeOfAnimalSelected: '',
+  //     ageOfAnimalSelected: ''
+  //   })
+  // }
 
   handleChange(event) {
     let value = event.target.value;
@@ -40,9 +40,20 @@ class PetsForm extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    this.setState({
-      submitted: true
-    })
+    if (this.state.submitted === true){
+      this.setState({
+        submitted: false
+      }, (()=>{
+        this.setState({
+          submitted: true
+        })
+      })
+    )
+    } else {
+      this.setState({
+        submitted: true
+      })
+    }
   }
 
   render() {
@@ -53,7 +64,7 @@ class PetsForm extends Component {
           <Select
             label='Type of Animal (optional) '
             options={this.state.typeOfAnimal}
-            selectedOption={this.state.anitypeOfAnimalSelected}
+            selectedOption={this.state.typeOfAnimalSelected}
             handleChange={this.handleChange}
           /><br />
           <Select
@@ -70,7 +81,10 @@ class PetsForm extends Component {
           />
           <button className="submit-button" onClick={this.handleOnClick} type="submit" value="Submit">Submit</button>
         </form>
-        {this.state.submitted && <FetchedPets location={this.state.location} />}
+        {this.state.submitted && <FetchedPets
+          location={this.state.location}
+          animal={this.state.typeOfAnimalSelected}
+          />}
       </div>
     )
   }
